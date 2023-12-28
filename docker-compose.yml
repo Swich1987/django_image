@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: .
+      network: host
+    command: run
+    environment:
+      DB__USER: postgres
+      DB__PASSWORD: postgres
+      DB__HOST: database
+      DB__PORT: 5432
+      DB__NAME: core
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    volumes:
+      - ./:/app
+  database:
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: core
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"

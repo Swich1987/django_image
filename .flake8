@@ -1,0 +1,19 @@
+[flake8]
+# B and E for bugbear and basic errors, C for convention violations, F for import errors, W for warnings
+select = B,E,F,W,C
+
+# Maintain simplicity in code, avoid too complex functions
+max-complexity = 10
+
+# Ignore specific errors that can be too pedantic or contextually irrelevant in test assignments
+ignore = E203, E266, E501, W503
+# E502 - whitespace before ':' (conflicts with black formatter)
+# E266 - too many leading '#' for block comment
+# E501 - line too long (handled by max-line-length)
+# W503 - line break before binary operator (conflict with W504)
+
+# Modern screens can accommodate longer lines; improves readability
+max-line-length = 120
+
+# Exclude directories that generally do not contain relevant code
+exclude = .git,__pycache__,venv,.venv,.mypy_cache,.pytest_cache,.vscode
