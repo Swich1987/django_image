@@ -10,7 +10,7 @@ services:
       DB__USER: postgres
       DB__PASSWORD: postgres
       DB__HOST: database
-      DB__PORT: 5432
+      DB__PORT: 5433
       DB__NAME: core
     ports:
       - "8080:8080"
@@ -25,4 +25,4 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
-      - "5432:5432"
+      - "5433:5432"

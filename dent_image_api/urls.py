@@ -1,10 +1,24 @@
-from django.urls import path
+from django.urls import include, path
+from rest_framework.routers import DefaultRouter
 
-from .views import AnnotationDetail, AnnotationList, ImageDetail, ImageList
+from .views import AnnotationViewSet, ImageViewSet
+
+router = DefaultRouter()
+router.register(r"images", ImageViewSet)
+
+annotations_list = AnnotationViewSet.as_view({"get": "list", "post": "create"})
+annotation_detail = AnnotationViewSet.as_view(
+    {"get": "retrieve", "put": "update", "patch": "partial_update", "delete": "destroy"}
+)
 
 urlpatterns = [
-    path("images/", ImageList.as_view(), name="image-list"),
-    path("images/<int:pk>/", ImageDetail.as_view(), name="image-detail"),
-    path("annotations/", AnnotationList.as_view(), name="annotation-list"),
-    path("annotations/<int:pk>/", AnnotationDetail.as_view(), name="annotation-detail"),
+    path("", include(router.urls)),
+    path(
+        "images/<int:image_id>/annotations/", annotations_list, name="image-annotations"
+    ),
+    path(
+        "images/<int:image_id>/annotations/<int:pk>/",
+        annotation_detail,
+        name="image-annotation-detail",
+    ),
 ]
