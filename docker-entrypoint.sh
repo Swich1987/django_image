@@ -9,7 +9,7 @@ case "${1}" in
     "full_run")
         shift
         echo "Starting application, node $(hostname)..."
-        exec make full_run
+        /app/wait-for-it.sh database:5432 -- make full_run
         ;;
     "lint")
         shift
