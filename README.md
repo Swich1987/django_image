@@ -101,27 +101,37 @@ curl -X GET ${API_URL_IMAGES}/
 curl -X GET ${API_URL_IMAGES}/${IMAGE_ID}/
 ```
 
-### 7. Test Put Image
+### 7. Test Get Image Annotations 
+```bash
+curl -X GET ${API_URL_IMAGES}/{$IMAGE_ID}/annotations/
+```
+
+### 8. Test Get Image Annotations in external format:
+```bash
+curl -X GET ${API_URL_IMAGES}/{$IMAGE_ID}/annotations/\?direction=external
+```
+
+### 9. Test Put Image
 ```bash
 curl -X PUT -F "name=Updated with put Image" -F "file=@${TEST_IMAGE_2_PATH}" ${API_URL_IMAGES}/${IMAGE_ID}/
 ```
 
-### 8. Test Put Image with Incomplete Data
+### 10. Test Put Image with Incomplete Data
 ```bash
 curl -X PUT -H "Content-Type: application/json" -d '{"name": "Incomplete Data Image"}' ${API_URL_IMAGES}/${IMAGE_ID}/
 ```
 
-### 9. Test Patch Image Name
+### 11. Test Patch Image Name
 ```bash
 curl -X PATCH -H "Content-Type: application/json" -d '{"name": "Patched Image Name"}' ${API_URL_IMAGES}/${IMAGE_ID}/
 ```
 
-### 10. Test Patch Image File
+### 12. Test Patch Image File
 ```bash
 curl -X PATCH -F "file=@${TEST_IMAGE_2_PATH}" ${API_URL_IMAGES}/${IMAGE_ID}/
 ```
 
-### 11. Test Delete Image
+### 13. Test Delete Image
 ```bash
 curl -X DELETE ${API_URL_IMAGES}/${IMAGE_ID}/
 ```
