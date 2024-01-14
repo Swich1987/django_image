@@ -2,7 +2,8 @@ import os
 
 from django.core.exceptions import ValidationError
 from django.db import models
-from django.core.files.storage import default_storage
+
+from dent_image import settings
 
 
 class Image(models.Model):
@@ -11,10 +12,9 @@ class Image(models.Model):
 
     def delete(self, *args, **kwargs):
         if self.file:
-            if os.path.isfile(self.file.path):
-                os.remove(self.file.path)
-            else:
-                default_storage.delete(self.file.name)
+            file_path = os.path.join(settings.MEDIA_ROOT, self.file.name)
+            if os.path.exists(file_path):
+                os.remove(file_path)
 
         super().delete(*args, **kwargs)
 

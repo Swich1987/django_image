@@ -24,10 +24,10 @@ DJANGO_SETTINGS_MODULE = "dent_image.settings"
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-9#-gbrgk#9k&j7h3^jq41s4q5ozjg2o9b57!ps6ghpc!rzf=g@"
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# TODO: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS: typing.List[str] = []
+ALLOWED_HOSTS: typing.List[str] = ["0.0.0.0"]
 
 
 # Application definition
@@ -79,8 +79,12 @@ WSGI_APPLICATION = "dent_image.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "core",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "database",
+        "PORT": "5432",
     }
 }
 

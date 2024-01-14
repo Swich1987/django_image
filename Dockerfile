@@ -22,6 +22,8 @@ RUN pip install --no-cache-dir -r dev.txt
 
 COPY . ${APP_HOME}
 
+RUN chmod +x /app/docker-entrypoint.sh
+
 # Create a non-root user "appuser" for running the application
 # It's a best practice to not run applications as the root user for security reasons
 RUN groupadd -r appuser && useradd -r -g appuser appuser \
@@ -34,4 +36,4 @@ ENV APP_PORT=${APP_PORT}
 
 EXPOSE ${APP_PORT}
 
-CMD ["./docker-entrypoint.sh", "run"]
+CMD ["/app/docker-entrypoint.sh", "run"]

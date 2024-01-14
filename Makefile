@@ -2,7 +2,7 @@
 .DEFAULT_GOAL := help
 
 run:
-	python -m app
+	python manage.py runserver 0.0.0.0:8080
 
 lint:
 	isort . -c
@@ -24,6 +24,10 @@ migrations:
 
 migrate:
 	python manage.py migrate
+
+full_run:
+	make migrate
+	make run
 
 help:
 	@echo "run - Start the application"

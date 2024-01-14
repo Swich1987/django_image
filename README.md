@@ -7,15 +7,15 @@ After that, you can run the following commands:
 docker-compose up
 ```
 
-You can check if the project is running by accessing the root url <http://localhost:8000>
+You can check if the project is running by accessing the root url <http://0.0.0.0:8080>
 
 # Browsable API
 
-After run, you can test the API through browsable API at <http://localhost:8000/api/v1/>
+After run, you can test the API through browsable API at <http://0.0.0.0:8080/api/v1/>
 
 ## Images
-Browsable API link for images: <http://localhost:8000/api/v1/images/>
-Browsable API link for image with id=1: <http://localhost:8000/api/v1/images/1/>
+Browsable API link for images: <http://0.0.0.0:8080/api/v1/images/>
+Browsable API link for image with id=1: <http://0.0.0.0:8080/api/v1/images/1/>
 
 - GET /api/v1/images
   return list of all images
@@ -29,8 +29,8 @@ Browsable API link for image with id=1: <http://localhost:8000/api/v1/images/1/>
   delete a single image
 
 ## Annotations
-Browsable API link for annotations of image with id=1: <http://localhost:8000/api/v1/images/1/annotations/>
-Browsable API link for annotation with id=1 of image with id=1: <http://localhost:8000/api/v1/images/1/annotations/1/>
+Browsable API link for annotations of image with id=1: <http://0.0.0.0:8080/api/v1/images/1/annotations/>
+Browsable API link for annotation with id=1 of image with id=1: <http://0.0.0.0:8080/api/v1/images/1/annotations/1/>
 
 - GET /api/v1/images/{id_image}/annotations?direction=[external|internal]
   return all annotations for an image;
@@ -57,7 +57,7 @@ Before running the curl commands to test the Image API, initialize the necessary
 Set the environment variables:
 
 ```bash
-export API_URL_IMAGES="http://localhost:8000/api/v1/images"
+export API_URL_IMAGES="http://0.0.0.0:8080/api/v1/images"
 export TEST_IMAGE_PATH="tests/media/images/dental-x-ray.jpeg"
 export TEST_IMAGE_2_PATH="tests/media/images/dental-x-ray_2.jpeg"
 export TEST_INVALID_IMAGE_PATH="tests/media/images/invalid_file.txt"

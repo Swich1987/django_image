@@ -1,6 +1,5 @@
 import json
 
-from django.core.files import File
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.urls import reverse
 from rest_framework import status
@@ -30,8 +29,9 @@ class ImageTests(APITestCase):
         self.detail_url = reverse("image-detail", kwargs={"pk": self.image.pk})
 
     def tearDown(self):
-        self.image.delete()
-        self.image_2.delete()
+        all_images = Image.objects.all()
+        for image in all_images:
+            image.delete()
 
     def test_create_image_without_annotation(self):
         with open(constants.TEST_IMAGE_PATH, "rb") as image_file:
@@ -124,7 +124,7 @@ class ImageTests(APITestCase):
             msg=f"Failed to get image list. Response data: {response.data}",
         )
         self.assertEqual(
-            1,
+            4,  # 2 images from migrations and 2 from tests
             len(response.data),
             msg="Image list does not contain expected number of entries.",
         )

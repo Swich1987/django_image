@@ -4,7 +4,12 @@ case "${1}" in
     "run")
         shift
         echo "Starting application, node $(hostname)..."
-        exec gunicorn myproject.wsgi:application --bind 0.0.0.0:${APP_PORT}
+        exec make run
+        ;;
+    "full_run")
+        shift
+        echo "Starting application, node $(hostname)..."
+        exec make full_run
         ;;
     "lint")
         shift
